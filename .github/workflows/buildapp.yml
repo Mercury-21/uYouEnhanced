@@ -23,7 +23,7 @@ on:
         type: string
       decrypted_youtube_url:
         description: "Direct URL of the decrypted YouTube IPA"
-        default: ""
+        default: "https://www.dropbox.com/scl/fi/py6fhewsoo2fnba1b3u8e/com.google.ios.youtube_21.40.5_und3fined.ipa?rlkey=ddknzlc1pscwwirhewgm8wj7k&st=7shievvg&dl=0"
         required: true
         type: string
       bundle_id:
@@ -341,8 +341,8 @@ jobs:
           name: v${{ env.YOUTUBE_VERSION }}-${{ env.UYOU_VERSION }}-(${{ github.run_number }})
           files: main/packages/*.ipa
           draft: true
-- name: Upload Built IPA
-    uses: actions/upload-artifact@v4
-    with:
-      name: uYouEnhanced-IPA
-      path: '*.ipa'
+      - name: Upload Built IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: uYouEnhanced-IPA
+          path: '*.ipa'
