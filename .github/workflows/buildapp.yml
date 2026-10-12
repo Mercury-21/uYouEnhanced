@@ -1,8 +1,4 @@
-# Original idea by @ISnackable. Thanks to him for handling the hardest parts!
-# https://github.com/ISnackable/YTCubePlus/blob/main/.github/workflows/Build.yml
-
 name: Build and Release uYouEnhanced
-
 on:
   workflow_dispatch:
     inputs:
@@ -23,7 +19,7 @@ on:
         type: string
       decrypted_youtube_url:
         description: "Direct URL of the decrypted YouTube IPA"
-        default: "https://www.dropbox.com/scl/fi/py6fhewsoo2fnba1b3u8e/com.google.ios.youtube_21.40.5_und3fined.ipa?rlkey=ddknzlc1pscwwirhewgm8wj7k&st=7shievvg&dl=0"
+        default: "https://www.dropbox.com/scl/fi/py6fhewsoo2fnba1b3u8e/com.google.ios.youtube_21.40.5_und3fined.ipa?rlkey=ddknzlc1pscwwirhewgm8wj7k&st=7shievvg&dl=1"
         required: true
         type: string
       bundle_id:
