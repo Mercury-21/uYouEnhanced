@@ -215,6 +215,17 @@ jobs:
             [ -f "$f" ] && tweaks="$tweaks $f"
           done
           cyan -i "$IPA_IN" -o "$OUTNAME" -uwef $tweaks -n "${{ inputs.app_name }}" -b ${{ inputs.bundle_id }}
+          
+          # Fix Safari extension bundle ID to prevent 9401 collision
+          mkdir -p ipafix && cd ipafix
+          unzip -q "../$OUTNAME"
+          PLIST="Payload/YouTube.app/PlugIns/OpenYouTubeSafariExtension.appex/Info.plist"
+          if [ -f "$PLIST" ]; then
+            /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier ${{ inputs.bundle_id }}.OpenYouTube.Extension" "$PLIST" || true
+          fi
+          zip -q -r "../$OUTNAME" Payload
+          cd .. && rm -rf ipafix
+          echo "Safari extension bundle ID updated to match ${{ inputs.bundle_id }}"
 
       - name: Strip Unresignable Extensions From Final IPA
         id: strip_ipa
